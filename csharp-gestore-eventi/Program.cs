@@ -52,7 +52,18 @@ try
     Console.Write("Inserisci una data per sapere che eventi ci saranno (dd/MM/yyyy): ");
     DateTime dataRicerca = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
     List<Evento> eventiTrovati = programma.TrovaEventiPerData(dataRicerca);
-    Console.WriteLine(ProgrammaEventi.StampaEventi(eventiTrovati));
+    if (eventiTrovati.Count > 0)
+    {
+        Console.WriteLine(ProgrammaEventi.StampaEventi(eventiTrovati));
+    } else
+    {
+        Console.WriteLine("Non ci sono eventi per la data inserita!");
+    }
+    
+
+    // Elimino tutti gli eventi dal programma
+    programma.SvuotaEventi();
+    Console.WriteLine("Tutti gli eventi sono stati eliminati dal programma!");
 }
 catch (Exception ex)
 {
