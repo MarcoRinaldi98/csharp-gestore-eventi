@@ -20,5 +20,19 @@ namespace csharp_gestore_eventi
         }
 
         // METODI
+        public string DataOraFormattata()
+        {
+            return Data.ToString("dd/MM/yyyy HH:mm");
+        }
+
+        public string PrezzoFormattato()
+        {
+            return Prezzo.ToString("0.00") + " euro";
+        }
+
+        public override string ToString()
+        {
+            return $"{DataOraFormattata()} - {Titolo} - {Relatore} - {PrezzoFormattato()}";
+        }
     }
 }
