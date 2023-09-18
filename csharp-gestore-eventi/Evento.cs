@@ -67,6 +67,7 @@ namespace csharp_gestore_eventi
         }
 
         // METODI
+        // metodo che aggiunge i posti passati come parametro ai posti prenotati
         public void PrenotaPosti(int numeroPosti)
         {
             if (Data <= DateTime.Now )
@@ -83,7 +84,7 @@ namespace csharp_gestore_eventi
             }
             NumeroPostiPrenotati += numeroPosti;
         }
-
+        // metodo che riduce i posti passati come parametro ai posti prenotati
         public void DisdiciPosti(int numeroPosti)
         {
             if (Data <= DateTime.Now)
@@ -100,7 +101,7 @@ namespace csharp_gestore_eventi
             }
             NumeroPostiPrenotati -= numeroPosti;
         }
-
+        // metodo che sovrascrive la rappresentazione default del metodo ToString()
         public override string ToString()
         {
             return Data.ToString("dd/MM/yyyy") + " - " + Titolo;
