@@ -66,6 +66,13 @@ try
         programma.AggiungiEvento(conferenza);
         Console.WriteLine($"Conferenza creata con successo: {conferenza}");
         Console.WriteLine(programma.ElencoEventiPerProgramma());
+
+        foreach(Evento evento in programma.Eventi)
+        {
+            Console.WriteLine($"Evento: {evento}");
+            PrenotazionePosti(evento);
+            DisdettaPosti(evento);
+        }
     } catch (Exception ex)
     {
         Console.WriteLine(ex.Message);
@@ -115,53 +122,55 @@ Evento CreaConferenza()
     // istanzio la conferenza con i dati precedentemente passati dall'utente e la ritorno
     return new Conferenza(titolo, data, postiMassimi, relatore, prezzo);
 }
-
-/*
-while (true)
+void PrenotazionePosti(Evento evento)
 {
-    // chiedo all'utente se vuole effetturare prenotazione posti
-    Console.Write("Vuoi prenotare posti? (si/no): ");
-    string risposta = Console.ReadLine();
-    if (risposta.ToLower() == "si" || risposta.ToLower() == "s")
+    while (true)
     {
-        // SE si chiedo la quantità di posti da prenotare e ne verifico la disponibilità
-        Console.Write("Quanti posti desideri prenotare? ");
-        int quantitaPrenotazione = int.Parse(Console.ReadLine());
+        // chiedo all'utente se vuole effetturare prenotazione posti
+        Console.Write("Vuoi prenotare posti? (si/no): ");
+        string risposta = Console.ReadLine();
+        if (risposta.ToLower() == "si" || risposta.ToLower() == "s")
+        {
+            // SE si chiedo la quantità di posti da prenotare e ne verifico la disponibilità
+            Console.Write("Quanti posti desideri prenotare? ");
+            int quantitaPrenotazione = int.Parse(Console.ReadLine());
 
-        evento.PrenotaPosti(quantitaPrenotazione);
+            evento.PrenotaPosti(quantitaPrenotazione);
 
-        Console.WriteLine($"Numero di posti prenotati = {evento.NumeroPostiPrenotati}");
-        Console.WriteLine($"Numero di posti disponibili = {evento.NumeroPostiMassimi - evento.NumeroPostiPrenotati}");
-    }
-    else
-    {
-        // ALTRIMENTI visualizzo messaggio a schermo e vado oltre
-        Console.WriteLine("OK va bene!");
-        break;
+            Console.WriteLine($"Numero di posti prenotati = {evento.NumeroPostiPrenotati}");
+            Console.WriteLine($"Numero di posti disponibili = {evento.NumeroPostiMassimi - evento.NumeroPostiPrenotati}");
+        }
+        else
+        {
+            // ALTRIMENTI visualizzo messaggio a schermo e vado oltre
+            Console.WriteLine("OK va bene!");
+            break;
+        }
     }
 }
-
-while (true)
-{
-    // chiedo all'utente se vuole disdire posti prenotati
-    Console.Write("Vuoi disdire dei posti? (si/no): ");
-    string risposta = Console.ReadLine();
-    if (risposta.ToLower() == "si" || risposta.ToLower() == "s")
+void DisdettaPosti(Evento evento)
+{ 
+    while (true)
     {
-        // SE si chiedo la quantità di posti da disdire e ne verifico la possibilità 
-        Console.Write("Indica il numero di posti da disdire: ");
-        int quantitaDisdetta = int.Parse(Console.ReadLine());
+        // chiedo all'utente se vuole disdire posti prenotati
+        Console.Write("Vuoi disdire dei posti? (si/no): ");
+        string risposta = Console.ReadLine();
+        if (risposta.ToLower() == "si" || risposta.ToLower() == "s")
+        {
+            // SE si chiedo la quantità di posti da disdire e ne verifico la possibilità 
+            Console.Write("Indica il numero di posti da disdire: ");
+            int quantitaDisdetta = int.Parse(Console.ReadLine());
 
-        evento.DisdiciPosti(quantitaDisdetta);
+            evento.DisdiciPosti(quantitaDisdetta);
 
-        Console.WriteLine($"Numero di posti prenotati: {evento.NumeroPostiPrenotati}");
-        Console.WriteLine($"Numero di posti disponibili: {evento.NumeroPostiMassimi - evento.NumeroPostiPrenotati}");
-    }
-    else
-    {
-        // ALTRIMENTI visualizzo messaggio a schermo e vado oltre
-        Console.WriteLine("OK va bene!");
-        break;
+            Console.WriteLine($"Numero di posti prenotati: {evento.NumeroPostiPrenotati}");
+            Console.WriteLine($"Numero di posti disponibili: {evento.NumeroPostiMassimi - evento.NumeroPostiPrenotati}");
+        }
+        else
+        {
+            // ALTRIMENTI visualizzo messaggio a schermo e vado oltre
+            Console.WriteLine("OK va bene!");
+            break;
+        }
     }
 }
-*/

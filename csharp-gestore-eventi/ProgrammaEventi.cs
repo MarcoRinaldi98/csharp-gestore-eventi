@@ -27,7 +27,7 @@ namespace csharp_gestore_eventi
                 }
             }
         }
-        List<Evento> Eventi {  get; set; }
+        public List<Evento> Eventi {  get; private set; }
 
         // COSTRUTTORE
         public ProgrammaEventi(string titolo) 
