@@ -59,11 +59,46 @@ try
     {
         Console.WriteLine("Non ci sono eventi per la data inserita!");
     }
-    
 
     // Elimino tutti gli eventi dal programma
-    programma.SvuotaEventi();
+    /*
+    // programma.SvuotaEventi();
     Console.WriteLine("Tutti gli eventi sono stati eliminati dal programma!");
+    */
+
+    Console.WriteLine("\n--------------- BONUS ---------------\n");
+
+    Console.WriteLine("Aggiungiamo anche una conferenza!");
+    try
+    {
+        // definisco i dati dell'evento chiedendoli all'utente
+        Console.Write("Inserisci il nome della conferenza: ");
+        string titolo = Console.ReadLine();
+
+        Console.Write("Inserisci la data della conferenza (dd/MM/yyyy): ");
+        DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+        Console.Write("Inserisci il numero di posti per la conferenza: ");
+        int postiMassimi = int.Parse(Console.ReadLine());
+
+        Console.Write("Inserisci il relatore della conferenza: ");
+        string relatore = Console.ReadLine();
+
+        Console.Write("Inserisci il prezzo del biglietto della conferenza: ");
+        double prezzo = double.Parse(Console.ReadLine());
+
+        // istanzio l'evento con i dati precedentemente passati dall'utente
+        Evento conferenza = new Conferenza(titolo, data, postiMassimi, relatore, prezzo);
+
+        // inserisco l'evento creato nel programma
+        programma.AggiungiEvento(conferenza);
+        Console.WriteLine($"Conferenza creata con successo: {conferenza}");
+        Console.WriteLine(programma.ElencoEventiPerProgramma());
+    } catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+
 }
 catch (Exception ex)
 {

@@ -9,8 +9,42 @@ namespace csharp_gestore_eventi
     public class Conferenza : Evento
     {
         // ATTRIBUTI
-        public string Relatore {  get; set; }
-        public double Prezzo { get; set; }
+        private string relatore;
+        public string Relatore { 
+            get
+            {
+                return relatore;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(null, "Il campo \"Relatore\" non può essere vuoto!");
+                }
+                else
+                {
+                    relatore = value;
+                }
+            }
+        }
+        private double prezzo;
+        public double Prezzo {
+            get
+            {
+                return prezzo;
+            }
+            set
+            {
+                if (prezzo < 0)
+                {
+                    throw new ArgumentNullException(null, "Il Prezzo non puo essere inferiore a 0!");
+                }
+                else
+                {
+                    prezzo = value;
+                }
+            }
+        }
 
         // COSTRUTTORE
         public Conferenza(string titolo, DateTime data, int numeroPostiMassimi, string relatore, double prezzo) : base(titolo, data, numeroPostiMassimi)
