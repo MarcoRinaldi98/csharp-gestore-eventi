@@ -9,6 +9,7 @@ namespace csharp_gestore_eventi
 {
     public class Evento
     {
+        // ATTRIBUTI
         private string titolo;
         public string Titolo 
         {
@@ -50,6 +51,7 @@ namespace csharp_gestore_eventi
         public int NumeroPostiMassimi { get; private set; }
         public int NumeroPostiPrenotati { get; private set; }
 
+        // COSTRUTTORE
         public Evento(string titolo, DateTime data, int numeroPostiMassimi)
         {
             this.Titolo = titolo;
@@ -64,6 +66,7 @@ namespace csharp_gestore_eventi
             this.NumeroPostiPrenotati = 0;
         }
 
+        // METODI
         public void PrenotaPosti(int numeroPosti)
         {
             if (Data <= DateTime.Now )
