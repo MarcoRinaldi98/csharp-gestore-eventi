@@ -17,20 +17,8 @@ try
     {
         try
         {
-            // definisco i dati dell'evento chiedendoli all'utente
-            Console.Write("Inserisci il nome dell'evento: ");
-            string titolo = Console.ReadLine();
-
-            Console.Write("Inserisci la data dell'evento (dd/MM/yyyy): ");
-            DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
-
-            Console.Write("Inserisci il numero di posti totali: ");
-            int postiMassimi = int.Parse(Console.ReadLine());
-
-            // istanzio l'evento con i dati precedentemente passati dall'utente
-            Evento evento = new Evento(titolo, data, postiMassimi);
-
-            // inserisco l'evento creato nel programma
+            // creo e inserisco l'evento creato nel programma
+            Evento evento = CreaEvento();
             programma.AggiungiEvento(evento);
             Console.WriteLine($"Evento creato con successo: {evento}");
         } 
@@ -71,24 +59,8 @@ try
     Console.WriteLine("Aggiungiamo anche una conferenza!");
     try
     {
-        // definisco i dati dell'evento chiedendoli all'utente
-        Console.Write("Inserisci il nome della conferenza: ");
-        string titolo = Console.ReadLine();
-
-        Console.Write("Inserisci la data della conferenza (dd/MM/yyyy): ");
-        DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
-
-        Console.Write("Inserisci il numero di posti per la conferenza: ");
-        int postiMassimi = int.Parse(Console.ReadLine());
-
-        Console.Write("Inserisci il relatore della conferenza: ");
-        string relatore = Console.ReadLine();
-
-        Console.Write("Inserisci il prezzo del biglietto della conferenza: ");
-        double prezzo = double.Parse(Console.ReadLine());
-
-        // istanzio l'evento con i dati precedentemente passati dall'utente
-        Evento conferenza = new Conferenza(titolo, data, postiMassimi, relatore, prezzo);
+        // creo e inserisco la conferenza creata nel programma
+        Evento conferenza = CreaConferenza();
 
         // inserisco l'evento creato nel programma
         programma.AggiungiEvento(conferenza);
@@ -98,11 +70,50 @@ try
     {
         Console.WriteLine(ex.Message);
     }
-
 }
 catch (Exception ex)
 {
     Console.WriteLine("Errore: " + ex.Message);
+}
+
+// FUNZIONI
+// funzione per richiedere i dati all'utente utili per la creazione dell'evento
+Evento CreaEvento()
+{
+    // definisco i dati dell'evento chiedendoli all'utente
+    Console.Write("Inserisci il nome dell'evento: ");
+    string titolo = Console.ReadLine();
+
+    Console.Write("Inserisci la data dell'evento (dd/MM/yyyy): ");
+    DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+    Console.Write("Inserisci il numero di posti totali: ");
+    int postiMassimi = int.Parse(Console.ReadLine());
+
+    // istanzio l'evento con i dati precedentemente passati dall'utente e lo ritorno
+    return new Evento(titolo, data, postiMassimi);
+}
+// funzione per richiedere i dati all'utente utili per la creazione della conferenza
+Evento CreaConferenza()
+{
+    // definisco i dati della conferenza chiedendoli all'utente
+    Console.Write("Inserisci il nome della conferenza: ");
+    string titolo = Console.ReadLine();
+
+    Console.Write("Inserisci la data della conferenza (dd/MM/yyyy): ");
+    DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+    Console.Write("Inserisci il numero di posti per la conferenza: ");
+    int postiMassimi = int.Parse(Console.ReadLine());
+
+    Console.Write("Inserisci il relatore della conferenza: ");
+    string relatore = Console.ReadLine();
+
+    Console.Write("Inserisci il prezzo del biglietto della conferenza: ");
+    double prezzo = double.Parse(Console.ReadLine());
+
+    // istanzio la conferenza con i dati precedentemente passati dall'utente e la ritorno
+    return new Conferenza(titolo, data, postiMassimi, relatore, prezzo);
 }
 
 /*
