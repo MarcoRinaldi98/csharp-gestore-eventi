@@ -67,11 +67,25 @@ try
         Console.WriteLine($"Conferenza creata con successo: {conferenza}");
         Console.WriteLine(programma.ElencoEventiPerProgramma());
 
-        foreach(Evento evento in programma.Eventi)
+        Console.WriteLine(Environment.NewLine);
+
+        // creazione menu per scelta prenotazioni/disdette
+        Console.WriteLine($"Ci sono {programma.NumeroDiEventi()} eventi prossimamente: ");
+        for (int i = 0; i < programma.NumeroDiEventi(); i++)
         {
-            Console.WriteLine($"Evento: {evento}");
-            PrenotazionePosti(evento);
-            DisdettaPosti(evento);
+            Console.WriteLine($"{i + 1}° {programma.Eventi[i]};");
+        }
+        Console.Write("a quale di questi vuoi accedere per prenotare/disdire: ");
+        int eventoScelto = int.Parse(Console.ReadLine());
+
+        if(eventoScelto <= 0 || eventoScelto > programma.NumeroDiEventi())
+        {
+            Console.WriteLine("Numero evento non valido!");
+        } else
+        {
+            Console.WriteLine($"Evento: {programma.Eventi[eventoScelto - 1]}");
+            PrenotazionePosti(programma.Eventi[eventoScelto - 1]);
+            DisdettaPosti(programma.Eventi[eventoScelto - 1]);
         }
     } catch (Exception ex)
     {
