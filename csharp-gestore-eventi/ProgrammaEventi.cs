@@ -73,7 +73,7 @@ namespace csharp_gestore_eventi
             string risultato = $"{Titolo}\n";
             foreach (var evento in Eventi)
             {
-                risultato += evento.ToString() + "\n";
+                risultato += "\t" + evento.ToString() + "\n";
             }
             return risultato;
         }
